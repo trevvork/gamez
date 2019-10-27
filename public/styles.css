@@ -1,0 +1,38 @@
+.card {
+    margin: 0 auto;
+}
+.header{
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    z-index: 10;
+}
+.header h1{
+    margin-left: 5px;
+    margin-right: 20px;
+}
+.top {
+    margin: 0;
+}
+
+a {
+    color: white;
+}
+a:hover {
+    color: white;
+}
+a:visited {
+    color: white;
+}
+#myCanvas {
+    margin: 0 auto;
+    border : 1px solid black;
+}
+
+.content {
+    margin: 0 auto;
+    width: 80%;
+    height: 90vh;
+    position: relative;
+    top: 90px;
+}
