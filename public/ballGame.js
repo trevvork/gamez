@@ -11,6 +11,7 @@ var score = 0;
 var randomX = Math.floor(Math.random() * Math.floor(canvas.width - 30)) + 30;
 var randomY = Math.floor(Math.random() * Math.floor(canvas.height - 30)) + 30;
 label.innerText = score;
+var pointSound;
 
 function drawBall() {
     ctx.beginPath();
@@ -34,6 +35,7 @@ function drawX(x , y) {
 }
 
 function moveSomething(e) {
+    
     switch(e.keyCode) {
         case 37:
             if(xDim - deltaX < xDim * 2){
@@ -62,6 +64,7 @@ function moveSomething(e) {
     if ( (xDim + deltaX - randomX < 25 && xDim + deltaX - randomX > -25) &&
          (yDim + deltaY - randomY < 25 && yDim + deltaY - randomY > -25) ){
         score += 1;
+        //pointSound.play();
         randomX = Math.floor(Math.random() * Math.floor(canvas.width - 30)) + 30;
         randomY = Math.floor(Math.random() * Math.floor(canvas.height - 30)) + 30;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -70,7 +73,27 @@ function moveSomething(e) {
     }
     label.innerText = score;
 }
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+      this.sound.play();
+    }
+    this.stop = function(){
+      this.sound.pause();
+    }
+}
+
+function startGame(){
+    drawBall();
+    //pointSound = new sound("coin.mp3");
+    
+}
 
 window.addEventListener("keydown", moveSomething, false);
-drawBall();
 
+startGame();
