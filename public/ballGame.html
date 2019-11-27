@@ -36,7 +36,13 @@
         </div>
       </header>
       <div class="content">
-        <p>Score: <span id="score"></span></p>
+        <div class="titleBar">
+          <p>Score: <span id="score"></span></p>
+          <div class="progress" style="width: 1000px; margin: 10px 0px 10px 0px;">
+              <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <span id="timeLabel"></span>
+              </div>
+        </div>
       <canvas id="myCanvas" width="998" height="598">
           Sorry, your browser does not support canvas.
       </canvas>

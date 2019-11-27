@@ -1,5 +1,7 @@
 var canvas = document.getElementById('myCanvas');
 var label = document.getElementById('score');
+var timeLabel = document.getElementById('timeLabel');
+var progressBar = document.getElementById('progressBar');
 var ctx = canvas.getContext('2d');
 var xDim = 500;
 var yDim = 300;
@@ -7,7 +9,9 @@ var raf;
 var deltaX = 0;
 var deltaY = 0;
 var score = 0;
-var score = 0;
+var timePassed = 0;
+var GAME_LENGTH = 30; //seconds
+var progressPercent = 0;
 var randomX = Math.floor(Math.random() * Math.floor(canvas.width - 30)) + 30;
 var randomY = Math.floor(Math.random() * Math.floor(canvas.height - 30)) + 30;
 label.innerText = score;
@@ -90,9 +94,33 @@ function sound(src) {
 
 function startGame(){
     drawBall();
+    progressBar.innerHTML = GAME_LENGTH;
+    progressBar.style.width = "100%";
+    timePassed += 1;
     //pointSound = new sound("coin.mp3");
-    
 }
+
+var gameActive = setInterval(function() {
+    if(timePassed == GAME_LENGTH){
+        progressBar.className = "progress-bar bg-danger";
+        progressBar.style.width = "100%"
+        progressBar.innerHTML = 0;
+        clearInterval(gameActive);
+        setTimeout(function() {
+            alert("Game Over\nYour Score: " + score)
+        }, 650);
+    }
+    else {
+    progressBar.innerHTML = GAME_LENGTH - timePassed;
+    progressPercent = 100 - (timePassed / GAME_LENGTH) * 100;
+    console.log(Math.floor(progressPercent))
+    var percentWidth = Math.floor(progressPercent) + "%";
+    progressBar.style.width = percentWidth;
+    timePassed += 1;
+    }
+},1000);
+
+
 
 window.addEventListener("keydown", moveSomething, false);
 
