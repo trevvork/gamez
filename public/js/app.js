@@ -1,4 +1,4 @@
-//inputEmail and submit
+
 var firebaseConfig = {
   apiKey: "AIzaSyBABLGPycL7g4gjKE3AwPb7fBKkdkq7JpA",
   authDomain: "gamez-98765.firebaseapp.com",

@@ -68,7 +68,6 @@ function moveSomething(e) {
     if ( (xDim + deltaX - randomX < 25 && xDim + deltaX - randomX > -25) &&
          (yDim + deltaY - randomY < 25 && yDim + deltaY - randomY > -25) ){
         score += 1;
-        //pointSound.play();
         randomX = Math.floor(Math.random() * Math.floor(canvas.width - 30)) + 30;
         randomY = Math.floor(Math.random() * Math.floor(canvas.height - 30)) + 30;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -77,27 +76,12 @@ function moveSomething(e) {
     }
     label.innerText = score;
 }
-function sound(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function(){
-      this.sound.play();
-    }
-    this.stop = function(){
-      this.sound.pause();
-    }
-}
 
 function startGame(){
     drawBall();
     progressBar.innerHTML = GAME_LENGTH;
     progressBar.style.width = "100%";
     timePassed += 1;
-    //pointSound = new sound("coin.mp3");
 }
 
 var gameActive = setInterval(function() {
@@ -113,15 +97,11 @@ var gameActive = setInterval(function() {
     else {
     progressBar.innerHTML = GAME_LENGTH - timePassed;
     progressPercent = 100 - (timePassed / GAME_LENGTH) * 100;
-    console.log(Math.floor(progressPercent))
     var percentWidth = Math.floor(progressPercent) + "%";
     progressBar.style.width = percentWidth;
     timePassed += 1;
     }
 },1000);
 
-
-
 window.addEventListener("keydown", moveSomething, false);
-
 startGame();
