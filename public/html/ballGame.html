@@ -16,48 +16,104 @@
 </head>
 
 <body>
-    <header class="header bg-dark text-white">
-        <div class="container top">
-          <div class="row">
-            <div class="column">
-              <h1>
-                <strong>gamez</strong>
-                <small class="text-muted">by TKMO</small>
-              </h1>
-            </div>
-            <ul class="nav">
-                <li class="nav-item">
-                  <a class="nav-link active" href="../index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/html/gameSelector.html">Gamez</a>
-                </li>
-              </ul>
+  <header class="header bg-dark text-white">
+    <div class="container top">
+      <div class="row">
+        <div class="column">
+          <h1>
+            <strong>gamez</strong>
+            <small class="text-muted">by TKMO</small>
+          </h1>
         </div>
-      </header>
-      <div class="content">
-        <div class="titleBar">
-          <p>Score: <span id="score"></span></p>
-          <div class="progress" style="width: 1000px; margin: 10px 0px 10px 0px;">
-              <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                <span id="timeLabel"></span>
-              </div>
-        </div>
-      <canvas id="myCanvas" width="998" height="598" style="background: #3C3C3C">
-          Sorry, your browser does not support canvas.
-      </canvas>
-      Speed: <span id="spedometer"></span> mph
-    </div>
-  <script src="/js/ballGame.js"></script>
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/html/gameSelector.html">Gamez</a>
+          </li>
+        </ul>
+      </div>
+  </header>
+  <div class="content">
+    <div class="titleBar">
+      <p>Score: <span id="score"></span> Speed: <span id="spedometer">0</span> mph</p>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+      <div class="progress" style="width: 1000px; margin: 10px 0px 10px 0px;">
+        <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+          aria-valuemax="100">
+          <span id="timeLabel"></span>
+        </div>
+      </div>
+    </div>
+    <div id="overlap">
+      <div id="playMenu" class="menu">
+        <h1 style="text-align: center;">Catch the X</h1>
+        <p>Use your arrow keys to catch the X!
+          <br>
+          <div style="display: flex;">
+            <div class="circle-yellow"></div> <span style="margin-left: 10px">= speed boost </span>
+          </div>
+          <br>
+          <div style="display: flex;">
+            <div class="circle-green"></div> <span style="margin-left: 10px">= time boost </span>
+          </div>
+        </p>
+        <button type="button" class="btn btn-primary play" onclick="startGame(1)">Play</button>
+        <button type="button" class="btn btn-primary help" onclick="revealNewMenu(1)">High Scores</button>
+      </div>
+      <div id="gameOverMenu" class="menu">
+        <h1 style="text-align: center;">Game Over</h1>
+        <p>Your Score: <span id="menuLabel"></span></p>
+        <div id="gotHighScore" style="text-align: center; align-content: center; display: flex;">
+          <div class="form-group">
+            <input type="text" class="form-control" id="highScoreName" placeholder="Enter name">
+            <button type="button" class="btn btn-primary btn-sm" style="margin-top: 5px;" onclick="saveScore()">Submit</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary play" onclick="startGame(2)">Play Again</button>
+        <button type="button" class="btn btn-primary help" onclick="revealNewMenu(2)">High Scores</button>
+      </div>
+      <div id="highScoresMenu" class="menu">
+        <h1 style="text-align: center;">High Scores</h1>
+        <table id="scoreboard">
+          <tr>
+            <th>Name </th>
+            <th> Score</th>
+          </tr>
+        </table>
+        <button type="button" class="btn btn-primary play" onclick="revealNewMenu(3)">Menu</button>
+      </div>
+
+      <canvas id="myCanvas" width="998" height="598" style="background: #3C3C3C">
+        Sorry, your browser does not support canvas.
+      </canvas>
+
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.5.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="/__/firebase/7.5.0/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.5.0/firebase-firestore.js"></script>
+
+    <!-- Initialize Firebase -->
+    <script src="/__/firebase/init.js"></script>
+
+
+    <script src="/js/ballGame.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
 </body>
+
 </html>

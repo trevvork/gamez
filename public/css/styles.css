@@ -27,8 +27,86 @@ a:visited {
 #myCanvas {
     margin: 0 auto;
     border : 1px solid black;
+    z-index: -1;
 }
 
+.menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(-600px);
+    margin: 0 auto;
+    background-color: darkgray;
+    z-index: 1;
+    width: 400px;
+    height: auto;
+    padding: 10px;
+    border-radius: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-yellow {
+    border-radius: 50%;
+    background-color: yellow;
+    width: 20px;
+    height: 20px;
+}
+.circle-green {
+    border-radius: 50%;
+    background-color: green;
+    width: 20px;
+    height: 20px;
+}
+/*
+#gameOverMenu {
+    position: absolute;
+    display: flex;
+    transform: translateY(-600px);
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: darkgray;
+    z-index: 0;
+    width: 400px;
+    height: auto;
+    padding: 10px;
+    border-radius: 40px;
+    justify-content: center;
+    align-items: center;
+}
+*/
+/*
+#highScoresMenu {
+    position: absolute;
+    display: flex;
+    transform: translateY(-600px);
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: darkgray;
+    z-index: 0;
+    width: 400px;
+    height: auto;
+    padding: 10px;
+    border-radius: 40px;
+    justify-content: center;
+    align-items: center;
+}
+*/
+#overlap {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.play {
+    margin: 10px auto;
+}
+.help {
+    margin: 10px auto auto auto;
+}
 .content {
     margin: 0 auto;
     width: 80%;
