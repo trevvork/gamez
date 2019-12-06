@@ -7,16 +7,6 @@ var spedometer = document.getElementById("spedometer");
 var playMenu = document.getElementById("playMenu");
 var gameOverMenu = document.getElementById("gameOverMenu");
 var highScoresMenu = document.getElementById("highScoresMenu");
-var p1Name = document.getElementById("p1-name");
-var p1Score = document.getElementById("p1-score");
-var p2Name = document.getElementById("p2-name");
-var p2Score = document.getElementById("p2-score");
-var p3Name = document.getElementById("p3-name");
-var p3Score = document.getElementById("p3-score");
-var p4Name = document.getElementById("p4-name");
-var p4Score = document.getElementById("p4-score");
-var p5Name = document.getElementById("p5-name");
-var p5Score = document.getElementById("p5-score");
 var gotHighScoreMenu = document.getElementById("gotHighScore");
 var ctx = canvas.getContext("2d");
 var GAME_LENGTH = 30; //seconds
@@ -246,7 +236,8 @@ function isColliding(usr, sprite) {
     usr.x - sprite.x < 25 &&
     usr.x - sprite.x > -25 &&
     usr.y - sprite.y < 25 &&
-    usr.y - sprite.y > -25
+    usr.y - sprite.y > -25 &&
+    sprite.drawn
   ) {
     sprite.drawn = false;
     return true;
